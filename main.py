@@ -1,7 +1,4 @@
-def validar_configuracion(asignados, maximos, disponibles):
-    finalizados = []
-    i = 0
-
+import numpy as np
 
 asignados = [
     [1, 0, 2, 1, 1],
@@ -28,110 +25,29 @@ for i in range(len(maximos)):
             auxiliar.append(0)
     pendientes.append(auxiliar)
 
-arreglo_maximo = []
-realizado = False
-for i in range(len(pendientes)):
-    if realizado:
-        break
+while np.sum(asignados) != 0:
     arreglo_maximo = []
-    for j in range(len(pendientes[0])):
-        if pendientes[i][j] <= disponibles[j]:
-            arreglo_maximo.append(asignados[i][j])
-        else:
-            arreglo_maximo = []
+    realizado = False
+    for i in range(len(pendientes)):
+        if realizado:
             break
-        if len(arreglo_maximo) == 5:
-            if sum(arreglo_maximo) == 0:
+        arreglo_maximo = []
+        for j in range(len(pendientes[0])):
+            if pendientes[i][j] <= disponibles[j]:
+                arreglo_maximo.append(asignados[i][j])
+            else:
                 arreglo_maximo = []
                 break
-            else:
-                for k in range(5):
-                    disponibles[k] = disponibles[k] + asignados[i][k]
-                    asignados[i][k] = 0
-                realizado = True
-                break
-
-print(arreglo_maximo)
-print(asignados)
-print(disponibles)
-
-arreglo_maximo = []
-realizado = False
-for i in range(len(pendientes)):
-    if realizado:
-        break
-    arreglo_maximo = []
-    for j in range(len(pendientes[0])):
-        if pendientes[i][j] <= disponibles[j]:
-            arreglo_maximo.append(asignados[i][j])
-        else:
-            arreglo_maximo = []
-            break
-        if len(arreglo_maximo) == 5:
-            if sum(arreglo_maximo) == 0:
-                arreglo_maximo = []
-                continue
-            else:
-                for k in range(5):
-                    disponibles[k] = disponibles[k] + asignados[i][k]
-                    asignados[i][k] = 0
-                realizado = True
-                break
-
-print(arreglo_maximo)
-print(asignados)
-print(disponibles)
-
-arreglo_maximo = []
-realizado = False
-for i in range(len(pendientes)):
-    if realizado:
-        break
-    arreglo_maximo = []
-    for j in range(len(pendientes[0])):
-        if pendientes[i][j] <= disponibles[j]:
-            arreglo_maximo.append(asignados[i][j])
-        else:
-            arreglo_maximo = []
-            break
-        if len(arreglo_maximo) >= 5:
-            if sum(arreglo_maximo) == 0:
-                arreglo_maximo = []
-                continue
-            else:
-                for k in range(5):
-                    disponibles[k] = disponibles[k] + asignados[i][k]
-                    asignados[i][k] = 0
-                realizado = True
-                break
-
-print(arreglo_maximo)
-print(asignados)
-print(disponibles)
-
-arreglo_maximo = []
-realizado = False
-for i in range(len(pendientes)):
-    if realizado:
-        break
-    arreglo_maximo = []
-    for j in range(len(pendientes[0])):
-        if pendientes[i][j] <= disponibles[j]:
-            arreglo_maximo.append(asignados[i][j])
-        else:
-            arreglo_maximo = []
-            break
-        if len(arreglo_maximo) >= 5:
-            if sum(arreglo_maximo) == 0:
-                arreglo_maximo = []
-                continue
-            else:
-                for k in range(5):
-                    disponibles[k] = disponibles[k] + asignados[i][k]
-                    asignados[i][k] = 0
-                realizado = True
-                break
-
-print(arreglo_maximo)
-print(asignados)
-print(disponibles)
+            if len(arreglo_maximo) == 5:
+                if sum(arreglo_maximo) == 0:
+                    arreglo_maximo = []
+                    break
+                else:
+                    for k in range(5):
+                        disponibles[k] = disponibles[k] + asignados[i][k]
+                        asignados[i][k] = 0
+                    realizado = True
+                    print(f"Se concluye el proceso {i}")
+                    break
+    print(f"Se libera los siguientes espacios de memoria {arreglo_maximo}")
+    print(f"Memoria disponible {disponibles}")
