@@ -14,7 +14,7 @@ maximos = [
     [1, 1, 2, 2, 1]
 ]
 
-texto = "";
+texto = ""
 cantidadLineas = 0
 disponibles = [0, 0, 2, 1, 1]
 pendientes = []
