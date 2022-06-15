@@ -49,5 +49,5 @@ while np.sum(asignados) != 0:
                     realizado = True
                     print(f"Se concluye el proceso {i}")
                     break
-    print(f"Se libera los siguientes espacios de memoria {arreglo_maximo}")
+    print(f"Se libera los siguientes recursos {arreglo_maximo}")
     print(f"Memoria disponible {disponibles}")
