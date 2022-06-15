@@ -14,6 +14,8 @@ maximos = [
     [1, 1, 2, 2, 1]
 ]
 
+texto = "";
+cantidadLineas = 0
 disponibles = [0, 0, 2, 1, 1]
 pendientes = []
 for i in range(len(maximos)):
@@ -25,7 +27,7 @@ for i in range(len(maximos)):
             auxiliar.append(0)
     pendientes.append(auxiliar)
 
-while np.sum(asignados) != 0:
+while np.sum(asignados) != 0 and cantidadLineas <= len(asignados) * 3:
     arreglo_maximo = []
     realizado = False
     for i in range(len(pendientes)):
@@ -47,7 +49,12 @@ while np.sum(asignados) != 0:
                         disponibles[k] = disponibles[k] + asignados[i][k]
                         asignados[i][k] = 0
                     realizado = True
-                    print(f"Se concluye el proceso {i}")
+                    texto = texto + f"Se concluye el proceso {i}\n"
                     break
-    print(f"Se libera los siguientes recursos {arreglo_maximo}")
-    print(f"Memoria disponible {disponibles}")
+    texto = texto + f"Se libera los siguientes recursos {arreglo_maximo}\n"
+    texto = texto + f"Memoria disponible {disponibles}\n"
+    for i in texto:
+        if i == "\n":
+            cantidadLineas = cantidadLineas + 1
+
+print(texto)
