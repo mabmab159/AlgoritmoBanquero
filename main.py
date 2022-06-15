@@ -27,7 +27,7 @@ for i in range(len(maximos)):
             auxiliar.append(0)
     pendientes.append(auxiliar)
 
-while np.sum(asignados) != 0 and cantidadLineas <= len(asignados) * 3:
+while np.sum(asignados) != 0:
     arreglo_maximo = []
     realizado = False
     for i in range(len(pendientes)):
